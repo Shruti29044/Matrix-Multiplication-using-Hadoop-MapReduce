@@ -60,3 +60,59 @@ Debugging nested loops and ensuring correctness of key emission
 
 Handling duplicates or missing elements in sparse matrices
 
+🔧 Setup & Compilation
+
+🔹 Unzip the project using: unzip MatMult.zip
+
+🔹 Navigate into the project: cd MatMult
+
+🔹 Ensure Hadoop is installed and configured (hadoop version)
+
+🔹 Compile the Java code with Hadoop classpath:
+
+javac -classpath `hadoop classpath` -d . Multiply.java
+
+🔹 Package the compiled classes into a JAR:
+
+jar -cvf matmult.jar *.class
+
+📁 Prepare Input Data
+
+🔹 Create input files MatrixM.txt and MatrixN.txt in the format:
+
+📤 Upload to HDFS
+
+🔹 Create an HDFS input directory:
+
+hdfs dfs -mkdir -p /input
+
+🔹 Upload matrix files: 
+
+hdfs dfs -put MatrixM.txt /input/M
+hdfs dfs -put MatrixN.txt /input/N
+
+🚀 Run MapReduce Jobs
+
+🔹 First job (generates intermediate output):
+
+hadoop jar matmult.jar Multiply /input/M /input/N /intermediate
+
+🔹 Second job (final matrix output):
+
+hadoop jar matmult.jar Multiply /intermediate /output
+
+📄 View the Result
+
+🔹 Check result from HDFS:
+
+hdfs dfs -cat /output/part-r-00000
+
+🧹 Clean Up (Optional)
+
+🔹 Remove old HDFS outputs if rerunning:
+
+hdfs dfs -rm -r /intermediate /output
+
+
+
+

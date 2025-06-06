@@ -42,7 +42,7 @@ Reducer:
 
 Sums all partial products for each (i,j) to get final P[i][j]
 
-Technologies Used
+Technologies Used:
 
 Java
 
@@ -50,7 +50,7 @@ Hadoop MapReduce API
 
 Custom Writable/Comparable for complex keys and values
 
-hallenges Faced
+Challenges Faced:
 
 Designing custom Writable classes for matrix elements and index pairs
 
